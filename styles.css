@@ -21,7 +21,7 @@ figure{
 	justify-content: center;
 	align-items: center;
 	display: none;
-} 
+}
 
 .modalcontent{
 	width:300px;
@@ -29,7 +29,7 @@ figure{
 	background-color: white;
 	border-radius: 4px;
 	text-align: center;
-	padding: 20px; 
+	padding: 20px;
 	position: relative;
 }
 
@@ -46,4 +46,7 @@ input{
 	font-size: 42px;
 	transform: rotate(45deg);
 	cursor: pointer;
+}
+nav{
+	text-align: center;
 }
