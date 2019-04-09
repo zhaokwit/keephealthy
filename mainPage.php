@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -21,21 +24,30 @@
 		</nav>
 	</header>
 
-	<div><h4><?php echo $_SESSION['firstname']; ?><h4><div>
+	<div>
 	<!-- to open popup window -->
-	<button id="myBtn1">Login/Sign up</button>
+	<?php if(!isset($_SESSION['firstname'])){
+		echo "<p>Please log in</p>";
+		echo "<button id='myBtn1'>Login/Sign up</button>";
+		} 
+		if(isset($_SESSION['firstname'])){
+			echo"<h4>Welcome <a href='profile.php'>" .$_SESSION['firstname'] . "</a><h4>";
+			echo "<a href='logout.php'><button id='myBtn2'>Login out</button></a>";
+		}
+	?>
+	
 
 	<!-- background change User login and login content-->
 	<div id="myModal" class = "modal">
 
 		<div class = "modalcontent">
 			<div id="close">+</div>
-			 <form action="#" method="post">
+			 <form action="process.php" method="post">
 				<input type="Email" placeholder="E-mail" name="Email">
 
 				<input type="Password" placeholder="Password" name="password">
 
-				<a href="#" class="button">Login</a></br>
+				<p><input type="submit" id="btn" value="Login"/></p>
 				<a href="register.php" class="button">Sign up</a>
 			 </form>
 		</div>

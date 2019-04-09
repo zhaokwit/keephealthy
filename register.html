@@ -1,40 +1,24 @@
 <?php
-    session_start();
-
-    $db = mysqli_connect('localhost','root', 'wit123','fooddb');
-
-    if(isset($_POST['register_btn'])){
-        session_start();
-        $fname = mysqli_real_escape_string($db, $_POST['firstName']);
-        $middlename = mysqli_real_escape_string($db, $_POST['mName']);
-        $lastname = mysqli_real_escape_string($db, $_POST['lastName']);
-        $gen = mysqli_real_escape_string($db, $_POST['gender']);
-        $dob = mysqli_real_escape_string($db, $_POST['dob']);
-        $weight = mysqli_real_escape_string($db, $_POST['weight']);
-        $email = mysqli_real_escape_string($db, $_POST['email']);
-        $password = mysqli_real_escape_string($db, $_POST['password']);
-        $password2 = mysqli_real_escape_string($db, $_POST['confirmPassword']);  
-
-        $message1="Registration is Done!";
-        $message2="The two password do not match!";
-
-        if($password == $password2){
-            $sql = "INSERT INTO users(firstname, middlename, lastname, gender, dob, weight, email, password) VALUES('$fname', '$middlename', '$lastname', '$gen', '$dob', '$weight', '$email', '$password')";
-            mysqli_query($db,$sql);
-            $_SESSION['firstname'] = $fname;
-            $_SESSION['middlename'] = $middlename;
-            $_SESSION['lastname'] = $lastname;
-            $_SESSION['gen'] = $gen;
-            $_SESSION['dob'] = $dob;
-            $_SESSION['weight'] = $weight;
-            $_SESSION['email'] = $email;
-
-            echo "<script type = 'text/javascript'>alert('$message1'); window.location='mainPage.php'</script>";
-
-        }else{
-            echo "<script type = 'text/javascript'>alert('$message2');</script>";
-        }
- }
+$connect = mysqli_connect("localhost","root, "wit123", "fooddb");
+$db_table = "users";
+if(isset($_POST["Register"]))
+{
+  if(empty($_POST["email"]) && empty($_POST["password"]))
+  {
+    echo "Both Fields are require";
+  }
+  else{
+    $email = mysqli_real_escape_string($connect, $_POST["email"]);
+    $password = mysqli_real_escape_string($connect, $_POST["password"]);
+    $password = md5($password);
+    $sql = "INSERT INTO users (email, password) VALUES('$email', '$password')";
+    if(mysqli_query($connect, $query))
+    {
+      echo "Registration Done";
+    }
+  }
+}
+mysqli_close($connect);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +29,7 @@
     body,input{
         margin: 0;
         padding: 0;
-        background: lightblue;
+        background: pink;
     }
     input{
         display: inline-block;
@@ -56,7 +40,7 @@
     }
     .register-box{
         position: relative;
-        height: 830px;
+        height: 800px;
         width: 800px;
         top: 50px;
         margin: 0 auto;
@@ -73,7 +57,7 @@
         text-align: center;
         font-size: 28px;
         font-weight: 800;
-        color: brown;
+        color: #ff5000;
         line-height: 50px;
     }
     .firstName-box{
@@ -81,7 +65,7 @@
         width: 420px;
         height: 40px;
         line-height: 40px;
-        margin-top:-20px;
+        margin-top:100px;
         margin-left:80px;
         font-weight: 700;
     }
@@ -100,7 +84,7 @@
         width: 420px;
         height: 40px;
         line-height: 40px;
-        margin-top:60px;
+        margin-top:180px;
         margin-left:80px;
         font-weight: 700;
     }
@@ -119,7 +103,7 @@
         width: 420px;
         height: 40px;
         line-height: 40px;
-        margin-top:140px;
+        margin-top:260px;
         margin-left:80px;
         font-weight: 700;
     }
@@ -136,9 +120,9 @@
     .gender-box{
         position: absolute;
         width: 420px;
-        height:  40px;
+        height: 40px;
         line-height: 40px;
-        margin-top:220px;
+        margin-top:340px;
         margin-left:80px;
         font-weight: 700;
     }
@@ -157,7 +141,7 @@
         width: 420px;
         height: 40px;
         line-height: 40px;
-        margin-top:300px;
+        margin-top:420px;
         margin-left:80px;
         font-weight: 700;
     }
@@ -177,7 +161,7 @@
         width: 420px;
         height: 40px;
         line-height: 40px;
-        margin-top:380px;
+        margin-top:500px;
         margin-left:82px;
         font-weight: 700;
     }
@@ -196,7 +180,7 @@
         width: 420px;
         height: 40px;
         line-height: 40px;
-        margin-top:460px;
+        margin-top:580px;
         margin-left:80px;
         font-weight: 700;
     }
@@ -215,7 +199,7 @@
         width: 420px;
         height: 40px;
         line-height: 40px;
-        margin-top:540px;
+        margin-top:660px;
         margin-left:80px;
         font-weight: 700;
     }
@@ -234,7 +218,7 @@
         width: 600px;
         height: 40px;
         line-height: 40px;
-        margin-top:620px;
+        margin-top:740px;
         margin-left:80px;
         font-weight: 700;
     }
@@ -257,11 +241,11 @@
         width: 80px;
         height: 40px;
         line-height: 40px;
-        margin-top: 715px;
+        margin-top: 820px;
         margin-left:200px;
         border-radius: 5px;
         background: grey;
-        margin-bottom: 30px;
+
     }
     #registerButton-button{
         display: inline-block;
@@ -275,50 +259,25 @@
         position:absolute;
         width: 150px;
         height: 20px;
-        margin-top: 715px;
+        margin-top: 820px;
         margin-left:320px;
-        margin-bottom: 30px;
-    }
-
-    nav ul li {
-    display: inline;
-
-    }
-
-    nav ul {
-    margin-top: 70px;
-   
-    list-style-type: none;
-    text-align: center;
     }
 
     </style>
 </head>
 <body>
-    <div>
-
-</div>
     <div class="container">
         <div class="register-box">
             <div class="title-box">
                 <span>Reigster</span>
             </div>
-            <nav>
-                <ul>
-                  <li><a href=" ">Home</a> <span>&#124;</span></li>
-                  <li><a href="#">About Hot Pot</a> <span>&#124;</span></li>
-                  <li><a href="#">Calories Calculator</a> <span>&#124;</span></li>
-                  <li><a href="#">History Calories</a> </li>
-                </ul>
-                 <br/><br/>
-            </nav>
 
-            <form method="post" action="register.php" id="registerForm">
+            <form method="post">
                 <div class="firstName-box">
                     <span class="require">*</span>
                     <label for="firstName">First Name</label>
                     <div class="firstName-input">
-                        <input type="text" id="firstName" name="firstName" placeholder="Please enter your first name" required />
+                        <input type="text" id="firstName" name="firstName" placeholder="Please enter your first name" />
                     </div>
                 </div>
 
@@ -333,7 +292,7 @@
                 <span class="require">*</span>
                         <label for="lastName">Last Name</label>
                     <div class="lastName-input">
-                        <input type="text" id="lastName" name="lastName" placeholder="Please enter your last name" required/>
+                        <input type="text" id="lastName" name="lastName" placeholder="Please enter your last name" />
                     </div>
                 </div>
 
@@ -341,15 +300,15 @@
                     <span class="require">*</span>
                     <label for="gender">Gender</label>
                     <div class="gender-input">
-                        <input type="radio" id="gender_male" class="genderinput" name="gender" value="0" required/>Male   
-                        <input type="radio" id="gender_female" class="genderinput" name="gender" value="1" required/>Female
+                        <input type="radio" id="gender_male" name="gender" value="0" />Male   
+                        <input type="radio" id="gender_female" name="gender" value="1" />Female
                     </div>
                 </div>
                 <div class="dob-box">
                     <span class="require">*</span>
                     <label for="dob">DOB</label>
                     <div class="dob-input">
-                        <input type="date" id="dob" name="dob" required/>
+                        <input type="date" id="dob" name="dob" />
                     </div>
                 </div>
 
@@ -357,7 +316,7 @@
                     <span class="require">*</span>
                     <label for="weight">Weight</label>
                     <div class="weight-input">
-                        <input type="number" id="weight" name="weight" placeholder="please enter your weight by kg" required/>
+                        <input type="number" id="weight" name="weight" placeholder="please enter your weight by kg" />
                     </div>
                 </div>
 
@@ -365,7 +324,7 @@
                     <span class="require">*</span>
                     <label for="email">Email</label>
                     <div class="email-input">
-                        <input type="email" id="email" name="email" placeholder="please enter your email ex:xxx@xxx.xxx" required />
+                        <input type="email" id="email" name="email" placeholder="please enter your email ex:xxx@xxx.xxx" />
                     </div>
                 </div>
 
@@ -373,7 +332,7 @@
                     <span class="require">*</span>
                     <label for="password">Password</label>
                     <div class="password-input">
-                        <input type="password" id="password" name="password" placeholder="please enter your password" required/>
+                        <input type="password" id="password" name="password" placeholder="please enter your password" />
                     </div>
                 </div>
 
@@ -381,13 +340,13 @@
                     <span class="require">*</span>
                     <label for="confirmPassword">Confirm Password</label>
                     <div class="confirmPassword-input">
-                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="make sure your password matches" required/>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="make sure your password matches" />
                     </div>
                 </div>
 
 
                 <div class="registerButton-box">
-                    <input id = "registerButton-button" type="submit" name="register_btn" value="Register">
+                    <input id = "registerButton-button" type="submit" value="Register">
                 </div>
 
                 <bn/>
@@ -396,7 +355,6 @@
                     <a href="#" style="text-decoration: none;">Already Have an account? Go Login</a>
                 </div>
             </form>
-        
         </div>
     </div>
 </body>
