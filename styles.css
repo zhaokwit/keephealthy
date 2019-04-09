@@ -53,7 +53,7 @@ nav{
 }
 
 
-.cc{
+.timers{
 	background-color: lightyellow;
     width: 300px;
     height: 500px;		  
@@ -67,3 +67,20 @@ nav{
     margin-top: 200px;
     margin-bottom: -620px;
 }
+
+#timer1{
+	text-align: center;
+	white-space: 
+}
+/* Clear floats after the columns */
+		.row:after {
+		  content: "";
+		  display: table;
+		  clear: both;
+		}
+
+		.column{
+		text-align: center;
+		margin-top: 20px;
+		margin-bottom:20px;
+		}

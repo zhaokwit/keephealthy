@@ -1,10 +1,14 @@
+window.onload = function(){
 let countdown;
  
-var buttons = document.getElementById("timer_button");
+var buttons = document.getElementById("timer_button_main");
 buttons.addEventListener("click", function(e){
+	alert("clicked!");
  var seconds = parseInt(this.dataset.time);
+ //var seconds = 150;
 	timer(seconds);
 });
+
 
 
 function timer(seconds){
@@ -29,5 +33,6 @@ function displayTimeLeft(seconds){
 	var remainderSeconds = seconds%60;
 	
 	document.getElementById("display_timer").innerHTML = minutes + ":" + remainderSeconds;
+}
 }
 
