@@ -47,6 +47,23 @@ input{
 	transform: rotate(45deg);
 	cursor: pointer;
 }
+
 nav{
 	text-align: center;
+}
+
+
+.cc{
+	background-color: lightyellow;
+    width: 300px;
+    height: 500px;		  
+    overflow: scroll;
+    margin: 0 auto;
+    position: -webkit -sticky;
+    position: sticky;
+    top: 0;
+    left: 70%;
+    margin-left: -50px;
+    margin-top: 200px;
+    margin-bottom: -620px;
 }
