@@ -1,3 +1,6 @@
+<?php
+require_once('config.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -133,7 +136,7 @@
         border: 2px solid #ccc;
         border-radius: 5px;
     }
- 
+
     .weight-box{
         position: absolute;
         width: 420px;
@@ -238,62 +241,102 @@
         width: 150px;
         height: 20px;
         margin-top: 820px;
-        margin-left:320px;       
+        margin-left:320px;
     }
- 
+
     </style>
 </head>
 <body>
+    <div>
+        <?php
+
+        if(isset($_POST['register_btn'])){
+            $firstname = $_POST['firstName'];
+            $middlename = $_POST['mName'];
+            $lastname = $_POST['lastName'];
+            $gen = $_POST['gender'];
+            $dob = $_POST['dob'];
+            $weight = $_POST['weight'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $password2 = $_POST['confirmPassword'];
+
+
+            $message1="Registration is Done!";
+            $message2="The two password do not match!";
+
+            if($password == $password2){
+            $sql = "INSERT INTO users (firstname, middlename, lastname, gender, dob, weight, email, password) VALUES(?,?,?,?,?,?,?,?)";
+            $stmtinsert = $db->prepare($sql);
+
+            $result = $stmtinsert->execute([$firstname, $middlename, $lastname, $gen, $dob, $weight, $email, $password]);
+
+            if($result){
+                echo "<script type = 'text/javascript'>alert('$message1');</script>";
+            }
+        }
+            else{
+                echo "<script type = 'text/javascript'>
+                response.write(window.history.goback(-1));
+                 </script>";
+
+
+                echo "<script type = 'text/javascript'>alert('$message2');</script>";
+            }
+ }
+?>
+</div>
     <div class="container">
         <div class="register-box">
             <div class="title-box">
                 <span>Reigster</span>
             </div>
-            <form action="#" method="post">
+
+            <form method="post" action="register.php" id="registerForm">
                 <div class="firstName-box">
                     <span class="require">*</span>
                     <label for="firstName">First Name</label>
                     <div class="firstName-input">
-                        <input type="text" id="firstName" name="firstName" placeholder="Please enter your first name" />
+                        <input type="text" id="firstName" name="firstName" placeholder="Please enter your first name" required />
                     </div>
                 </div>
- 
+
                 <div class="mName-box">
                     <label for="mName">Middle Name</label>
                     <div class="mName-input">
                         <input type="text" id="mName" name="mName" placeholder="Please enter your middle name" />
                     </div>
                 </div>
- 
+
                 <div class="lastName-box">
                 <span class="require">*</span>
                         <label for="lastName">Last Name</label>
                     <div class="lastName-input">
-                        <input type="text" id="lastName" name="lastName" placeholder="Please enter your last name" />
+                        <input type="text" id="lastName" name="lastName" placeholder="Please enter your last name" required/>
                     </div>
                 </div>
- 
+
                 <div class="gender-box">
                     <span class="require">*</span>
                     <label for="gender">Gender</label>
                     <div class="gender-input">
-                        <input type="radio" id="gender_male" name="gender" value="0" />Male   
-                        <input type="radio" id="gender_female" name="gender" value="1" />Female
+                        <input type="radio" id="gender_male" class="genderinput" name="gender" value="0" required/>Male   
+                        <input type="radio" id="gender_female" class="genderinput" name="gender" value="1" required/>Female
                     </div>
                 </div>
                 <div class="dob-box">
                     <span class="require">*</span>
                     <label for="dob">DOB</label>
                     <div class="dob-input">
-                        <input type="date" id="dob" name="dob" />
+                        <input type="date" id="dob" name="dob" required/>
                     </div>
                 </div>
-                
+
                 <div class="weight-box">
                     <span class="require">*</span>
                     <label for="weight">Weight</label>
                     <div class="weight-input">
-                        <input type="number" id="weight" name="weight" placeholder="please enter your weight by lb" />
+                        <input type="number" id="weight" name="weight" placeholder="please enter your weight by kg" required/>
                     </div>
                 </div>
 
@@ -301,7 +344,7 @@
                     <span class="require">*</span>
                     <label for="email">Email</label>
                     <div class="email-input">
-                        <input type="email" id="email" name="email" placeholder="please enter your email ex:xxx@xxx.xxx" />
+                        <input type="email" id="email" name="email" placeholder="please enter your email ex:xxx@xxx.xxx" required />
                     </div>
                 </div>
 
@@ -309,29 +352,30 @@
                     <span class="require">*</span>
                     <label for="password">Password</label>
                     <div class="password-input">
-                        <input type="password" id="password" name="password" placeholder="please enter your password" />
+                        <input type="password" id="password" name="password" placeholder="please enter your password" required/>
                     </div>
                 </div>
-                
+
                 <div class="confirmPassword-box">
                     <span class="require">*</span>
                     <label for="confirmPassword">Confirm Password</label>
                     <div class="confirmPassword-input">
-                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="make sure your password matches" />
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="make sure your password matches" required/>
                     </div>
                 </div>
-                
-                
+
+
                 <div class="registerButton-box">
-                    <input id = "registerButton-button" type="submit" value="Register">
+                    <input id = "registerButton-button" type="submit" name="register_btn" value="Register">
                 </div>
 
                 <bn/>
-                
+
                 <div class="goLogin-box">
                     <a href="#" style="text-decoration: none;">Already Have an account? Go Login</a>
                 </div>
             </form>
+
         </div>
     </div>
 </body>
