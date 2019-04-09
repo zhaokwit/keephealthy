@@ -1,5 +1,40 @@
 <?php
-require_once('config.php');
+    session_start();
+
+    $db = mysqli_connect('localhost','root', 'wit123','fooddb');
+
+    if(isset($_POST['register_btn'])){
+        session_start();
+        $fname = mysqli_real_escape_string($db, $_POST['firstName']);
+        $middlename = mysqli_real_escape_string($db, $_POST['mName']);
+        $lastname = mysqli_real_escape_string($db, $_POST['lastName']);
+        $gen = mysqli_real_escape_string($db, $_POST['gender']);
+        $dob = mysqli_real_escape_string($db, $_POST['dob']);
+        $weight = mysqli_real_escape_string($db, $_POST['weight']);
+        $email = mysqli_real_escape_string($db, $_POST['email']);
+        $password = mysqli_real_escape_string($db, $_POST['password']);
+        $password2 = mysqli_real_escape_string($db, $_POST['confirmPassword']);  
+
+        $message1="Registration is Done!";
+        $message2="The two password do not match!";
+
+        if($password == $password2){
+            $sql = "INSERT INTO users(firstname, middlename, lastname, gender, dob, weight, email, password) VALUES('$fname', '$middlename', '$lastname', '$gen', '$dob', '$weight', '$email', '$password')";
+            mysqli_query($db,$sql);
+            $_SESSION['firstname'] = $fname;
+            $_SESSION['middlename'] = $middlename;
+            $_SESSION['lastname'] = $lastname;
+            $_SESSION['gen'] = $gen;
+            $_SESSION['dob'] = $dob;
+            $_SESSION['weight'] = $weight;
+            $_SESSION['email'] = $email;
+
+            echo "<script type = 'text/javascript'>alert('$message1'); window.location='mainPage.php'</script>";
+
+        }else{
+            echo "<script type = 'text/javascript'>alert('$message2');</script>";
+        }
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +45,7 @@ require_once('config.php');
     body,input{
         margin: 0;
         padding: 0;
-        background: pink;
+        background: lightblue;
     }
     input{
         display: inline-block;
@@ -21,7 +56,7 @@ require_once('config.php');
     }
     .register-box{
         position: relative;
-        height: 800px;
+        height: 830px;
         width: 800px;
         top: 50px;
         margin: 0 auto;
@@ -38,7 +73,7 @@ require_once('config.php');
         text-align: center;
         font-size: 28px;
         font-weight: 800;
-        color: #ff5000;
+        color: brown;
         line-height: 50px;
     }
     .firstName-box{
@@ -46,7 +81,7 @@ require_once('config.php');
         width: 420px;
         height: 40px;
         line-height: 40px;
-        margin-top:100px;
+        margin-top:-20px;
         margin-left:80px;
         font-weight: 700;
     }
@@ -65,7 +100,7 @@ require_once('config.php');
         width: 420px;
         height: 40px;
         line-height: 40px;
-        margin-top:180px;
+        margin-top:60px;
         margin-left:80px;
         font-weight: 700;
     }
@@ -84,7 +119,7 @@ require_once('config.php');
         width: 420px;
         height: 40px;
         line-height: 40px;
-        margin-top:260px;
+        margin-top:140px;
         margin-left:80px;
         font-weight: 700;
     }
@@ -101,9 +136,9 @@ require_once('config.php');
     .gender-box{
         position: absolute;
         width: 420px;
-        height: 40px;
+        height:  40px;
         line-height: 40px;
-        margin-top:340px;
+        margin-top:220px;
         margin-left:80px;
         font-weight: 700;
     }
@@ -122,7 +157,7 @@ require_once('config.php');
         width: 420px;
         height: 40px;
         line-height: 40px;
-        margin-top:420px;
+        margin-top:300px;
         margin-left:80px;
         font-weight: 700;
     }
@@ -142,7 +177,7 @@ require_once('config.php');
         width: 420px;
         height: 40px;
         line-height: 40px;
-        margin-top:500px;
+        margin-top:380px;
         margin-left:82px;
         font-weight: 700;
     }
@@ -161,7 +196,7 @@ require_once('config.php');
         width: 420px;
         height: 40px;
         line-height: 40px;
-        margin-top:580px;
+        margin-top:460px;
         margin-left:80px;
         font-weight: 700;
     }
@@ -180,7 +215,7 @@ require_once('config.php');
         width: 420px;
         height: 40px;
         line-height: 40px;
-        margin-top:660px;
+        margin-top:540px;
         margin-left:80px;
         font-weight: 700;
     }
@@ -199,7 +234,7 @@ require_once('config.php');
         width: 600px;
         height: 40px;
         line-height: 40px;
-        margin-top:740px;
+        margin-top:620px;
         margin-left:80px;
         font-weight: 700;
     }
@@ -222,11 +257,11 @@ require_once('config.php');
         width: 80px;
         height: 40px;
         line-height: 40px;
-        margin-top: 820px;
+        margin-top: 715px;
         margin-left:200px;
         border-radius: 5px;
         background: grey;
-
+        margin-bottom: 30px;
     }
     #registerButton-button{
         display: inline-block;
@@ -240,57 +275,43 @@ require_once('config.php');
         position:absolute;
         width: 150px;
         height: 20px;
-        margin-top: 820px;
+        margin-top: 715px;
         margin-left:320px;
+        margin-bottom: 30px;
+    }
+
+    nav ul li {
+    display: inline;
+
+    }
+
+    nav ul {
+    margin-top: 70px;
+   
+    list-style-type: none;
+    text-align: center;
     }
 
     </style>
 </head>
 <body>
     <div>
-        <?php
 
-        if(isset($_POST['register_btn'])){
-            $firstname = $_POST['firstName'];
-            $middlename = $_POST['mName'];
-            $lastname = $_POST['lastName'];
-            $gen = $_POST['gender'];
-            $dob = $_POST['dob'];
-            $weight = $_POST['weight'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            $password2 = $_POST['confirmPassword'];
-
-
-            $message1="Registration is Done!";
-            $message2="The two password do not match!";
-
-            if($password == $password2){
-            $sql = "INSERT INTO users (firstname, middlename, lastname, gender, dob, weight, email, password) VALUES(?,?,?,?,?,?,?,?)";
-            $stmtinsert = $db->prepare($sql);
-
-            $result = $stmtinsert->execute([$firstname, $middlename, $lastname, $gen, $dob, $weight, $email, $password]);
-
-            if($result){
-                echo "<script type = 'text/javascript'>alert('$message1');</script>";
-            }
-        }
-            else{
-                echo "<script type = 'text/javascript'>
-                response.write(window.history.goback(-1));
-                 </script>";
-
-
-                echo "<script type = 'text/javascript'>alert('$message2');</script>";
-            }
- }
-?>
 </div>
     <div class="container">
         <div class="register-box">
             <div class="title-box">
                 <span>Reigster</span>
             </div>
+            <nav>
+                <ul>
+                  <li><a href=" ">Home</a> <span>&#124;</span></li>
+                  <li><a href="#">About Hot Pot</a> <span>&#124;</span></li>
+                  <li><a href="#">Calories Calculator</a> <span>&#124;</span></li>
+                  <li><a href="#">History Calories</a> </li>
+                </ul>
+                 <br/><br/>
+            </nav>
 
             <form method="post" action="register.php" id="registerForm">
                 <div class="firstName-box">
@@ -375,7 +396,7 @@ require_once('config.php');
                     <a href="#" style="text-decoration: none;">Already Have an account? Go Login</a>
                 </div>
             </form>
-
+        
         </div>
     </div>
 </body>

@@ -1,5 +1,28 @@
 <?php
+<<<<<<< HEAD
 require_once('config.php');
+=======
+$connect = mysqli_connect("localhost","root, "wit123", "fooddb");
+$db_table = "users";
+if(isset($_POST["Register"]))
+{
+  if(empty($_POST["email"]) && empty($_POST["password"]))
+  {
+    echo "Both Fields are require";
+  }
+  else{
+    $email = mysqli_real_escape_string($connect, $_POST["email"]);
+    $password = mysqli_real_escape_string($connect, $_POST["password"]);
+    $password = md5($password);
+    $sql = "INSERT INTO users (email, password) VALUES('$email', '$password')";
+    if(mysqli_query($connect, $query))
+    {
+      echo "Registration Done";
+    }
+  }
+}
+mysqli_close($connect);
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +33,11 @@ require_once('config.php');
     body,input{
         margin: 0;
         padding: 0;
+<<<<<<< HEAD
         background: lightblue;
+=======
+        background: pink;
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
     }
     input{
         display: inline-block;
@@ -21,7 +48,11 @@ require_once('config.php');
     }
     .register-box{
         position: relative;
+<<<<<<< HEAD
         height: 830px;
+=======
+        height: 800px;
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
         width: 800px;
         top: 50px;
         margin: 0 auto;
@@ -38,7 +69,11 @@ require_once('config.php');
         text-align: center;
         font-size: 28px;
         font-weight: 800;
+<<<<<<< HEAD
         color: brown;
+=======
+        color: #ff5000;
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
         line-height: 50px;
     }
     .firstName-box{
@@ -46,7 +81,11 @@ require_once('config.php');
         width: 420px;
         height: 40px;
         line-height: 40px;
+<<<<<<< HEAD
         margin-top:-20px;
+=======
+        margin-top:100px;
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
         margin-left:80px;
         font-weight: 700;
     }
@@ -65,7 +104,11 @@ require_once('config.php');
         width: 420px;
         height: 40px;
         line-height: 40px;
+<<<<<<< HEAD
         margin-top:60px;
+=======
+        margin-top:180px;
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
         margin-left:80px;
         font-weight: 700;
     }
@@ -84,7 +127,11 @@ require_once('config.php');
         width: 420px;
         height: 40px;
         line-height: 40px;
+<<<<<<< HEAD
         margin-top:140px;
+=======
+        margin-top:260px;
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
         margin-left:80px;
         font-weight: 700;
     }
@@ -103,7 +150,11 @@ require_once('config.php');
         width: 420px;
         height: 40px;
         line-height: 40px;
+<<<<<<< HEAD
         margin-top:220px;
+=======
+        margin-top:340px;
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
         margin-left:80px;
         font-weight: 700;
     }
@@ -122,7 +173,11 @@ require_once('config.php');
         width: 420px;
         height: 40px;
         line-height: 40px;
+<<<<<<< HEAD
         margin-top:300px;
+=======
+        margin-top:420px;
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
         margin-left:80px;
         font-weight: 700;
     }
@@ -142,7 +197,11 @@ require_once('config.php');
         width: 420px;
         height: 40px;
         line-height: 40px;
+<<<<<<< HEAD
         margin-top:380px;
+=======
+        margin-top:500px;
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
         margin-left:82px;
         font-weight: 700;
     }
@@ -161,7 +220,11 @@ require_once('config.php');
         width: 420px;
         height: 40px;
         line-height: 40px;
+<<<<<<< HEAD
         margin-top:460px;
+=======
+        margin-top:580px;
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
         margin-left:80px;
         font-weight: 700;
     }
@@ -180,7 +243,11 @@ require_once('config.php');
         width: 420px;
         height: 40px;
         line-height: 40px;
+<<<<<<< HEAD
         margin-top:540px;
+=======
+        margin-top:660px;
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
         margin-left:80px;
         font-weight: 700;
     }
@@ -199,7 +266,11 @@ require_once('config.php');
         width: 600px;
         height: 40px;
         line-height: 40px;
+<<<<<<< HEAD
         margin-top:620px;
+=======
+        margin-top:740px;
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
         margin-left:80px;
         font-weight: 700;
     }
@@ -222,11 +293,19 @@ require_once('config.php');
         width: 80px;
         height: 40px;
         line-height: 40px;
+<<<<<<< HEAD
         margin-top: 715px;
         margin-left:200px;
         border-radius: 5px;
         background: grey;
         margin-bottom: 30px;
+=======
+        margin-top: 820px;
+        margin-left:200px;
+        border-radius: 5px;
+        background: grey;
+
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
     }
     #registerButton-button{
         display: inline-block;
@@ -240,6 +319,7 @@ require_once('config.php');
         position:absolute;
         width: 150px;
         height: 20px;
+<<<<<<< HEAD
         margin-top: 715px;
         margin-left:320px;
         margin-bottom: 30px;
@@ -255,11 +335,16 @@ require_once('config.php');
    
     list-style-type: none;
     text-align: center;
+=======
+        margin-top: 820px;
+        margin-left:320px;
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
     }
 
     </style>
 </head>
 <body>
+<<<<<<< HEAD
     <div>
         <?php
 
@@ -299,11 +384,14 @@ require_once('config.php');
  }
 ?>
 </div>
+=======
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
     <div class="container">
         <div class="register-box">
             <div class="title-box">
                 <span>Reigster</span>
             </div>
+<<<<<<< HEAD
             <nav>
             <ul>
                   <li><a href="#">Home</a> <span>&#124;</span></li>
@@ -314,11 +402,19 @@ require_once('config.php');
             <br/><br/>
             </nav>
             <form method="post" action="register.php" id="registerForm">
+=======
+
+            <form method="post">
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
                 <div class="firstName-box">
                     <span class="require">*</span>
                     <label for="firstName">First Name</label>
                     <div class="firstName-input">
+<<<<<<< HEAD
                         <input type="text" id="firstName" name="firstName" placeholder="Please enter your first name" required />
+=======
+                        <input type="text" id="firstName" name="firstName" placeholder="Please enter your first name" />
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
                     </div>
                 </div>
 
@@ -333,7 +429,11 @@ require_once('config.php');
                 <span class="require">*</span>
                         <label for="lastName">Last Name</label>
                     <div class="lastName-input">
+<<<<<<< HEAD
                         <input type="text" id="lastName" name="lastName" placeholder="Please enter your last name" required/>
+=======
+                        <input type="text" id="lastName" name="lastName" placeholder="Please enter your last name" />
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
                     </div>
                 </div>
 
@@ -341,15 +441,24 @@ require_once('config.php');
                     <span class="require">*</span>
                     <label for="gender">Gender</label>
                     <div class="gender-input">
+<<<<<<< HEAD
                         <input type="radio" id="gender_male" class="genderinput" name="gender" value="0" required/>Male   
                         <input type="radio" id="gender_female" class="genderinput" name="gender" value="1" required/>Female
+=======
+                        <input type="radio" id="gender_male" name="gender" value="0" />Male   
+                        <input type="radio" id="gender_female" name="gender" value="1" />Female
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
                     </div>
                 </div>
                 <div class="dob-box">
                     <span class="require">*</span>
                     <label for="dob">DOB</label>
                     <div class="dob-input">
+<<<<<<< HEAD
                         <input type="date" id="dob" name="dob" required/>
+=======
+                        <input type="date" id="dob" name="dob" />
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
                     </div>
                 </div>
 
@@ -357,7 +466,11 @@ require_once('config.php');
                     <span class="require">*</span>
                     <label for="weight">Weight</label>
                     <div class="weight-input">
+<<<<<<< HEAD
                         <input type="number" id="weight" name="weight" placeholder="please enter your weight by kg" required/>
+=======
+                        <input type="number" id="weight" name="weight" placeholder="please enter your weight by kg" />
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
                     </div>
                 </div>
 
@@ -365,7 +478,11 @@ require_once('config.php');
                     <span class="require">*</span>
                     <label for="email">Email</label>
                     <div class="email-input">
+<<<<<<< HEAD
                         <input type="email" id="email" name="email" placeholder="please enter your email ex:xxx@xxx.xxx" required />
+=======
+                        <input type="email" id="email" name="email" placeholder="please enter your email ex:xxx@xxx.xxx" />
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
                     </div>
                 </div>
 
@@ -373,7 +490,11 @@ require_once('config.php');
                     <span class="require">*</span>
                     <label for="password">Password</label>
                     <div class="password-input">
+<<<<<<< HEAD
                         <input type="password" id="password" name="password" placeholder="please enter your password" required/>
+=======
+                        <input type="password" id="password" name="password" placeholder="please enter your password" />
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
                     </div>
                 </div>
 
@@ -381,13 +502,21 @@ require_once('config.php');
                     <span class="require">*</span>
                     <label for="confirmPassword">Confirm Password</label>
                     <div class="confirmPassword-input">
+<<<<<<< HEAD
                         <input type="password" id="confirmPassword" name="confirmPassword" placeholder="make sure your password matches" required/>
+=======
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="make sure your password matches" />
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
                     </div>
                 </div>
 
 
                 <div class="registerButton-box">
+<<<<<<< HEAD
                     <input id = "registerButton-button" type="submit" name="register_btn" value="Register">
+=======
+                    <input id = "registerButton-button" type="submit" value="Register">
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
                 </div>
 
                 <bn/>
@@ -396,7 +525,10 @@ require_once('config.php');
                     <a href="#" style="text-decoration: none;">Already Have an account? Go Login</a>
                 </div>
             </form>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 46faa734da30a16fb5788ff1b05988edceb42807
         </div>
     </div>
 </body>

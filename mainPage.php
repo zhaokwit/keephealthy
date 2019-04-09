@@ -1,39 +1,19 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head lang="en">
 	<meta charset="utf-8">
 	<title>Keep Healthy with Hot Pot</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="account.js"></script>
-	<script src="timer.js"></script>	
 </head>
 
 <body>
-
-	<div class = "start_timer">
-
-		<div class= "timers">
-
-			<div class="row">
-			  <div class="column" id="timer1">
-					
-			  </div>
-			  <div class="column" id="timer2">
-			    	
-			  </div>
-			  <div class="column" id="timer3">
-			    	
-			  </div>
-			  
-			</div>
-			
-		</div>
-
+	<div class="cc">
 
 	</div>
-
-
 	<header>
 		<h1 id="mainHeader">Keep Healthy with Hot Pot</h1>
 		<nav role="mainMenu">
@@ -44,21 +24,30 @@
 		</nav>
 	</header>
 
-	<div><h4><?php echo $_SESSION['firstname']; ?><h4><div>
+	<div>
 	<!-- to open popup window -->
-	<button id="myBtn1">Login/Sign up</button>
+	<?php if(!isset($_SESSION['firstname'])){
+		echo "<p>Please log in</p>";
+		echo "<button id='myBtn1'>Login/Sign up</button>";
+		} 
+		if(isset($_SESSION['firstname'])){
+			echo"<h4>Welcome <a href='profile.php'>" .$_SESSION['firstname'] . "</a><h4>";
+			echo "<a href='logout.php'><button id='myBtn2'>Login out</button></a>";
+		}
+	?>
+	
 
 	<!-- background change User login and login content-->
 	<div id="myModal" class = "modal">
 
 		<div class = "modalcontent">
 			<div id="close">+</div>
-			 <form action="#" method="post">
+			 <form action="process.php" method="post">
 				<input type="Email" placeholder="E-mail" name="Email">
 
 				<input type="Password" placeholder="Password" name="password">
 
-				<a href="#" class="button">Login</a></br>
+				<p><input type="submit" id="btn" value="Login"/></p>
 				<a href="register.php" class="button">Sign up</a>
 			 </form>
 		</div>
@@ -86,5 +75,4 @@
 		</div>
 	</section>
 </body>
-<script type="text/javascript" src="mutiTimer.js"></script> 
 </html>
