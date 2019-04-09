@@ -45,10 +45,11 @@ p{
 
 #calculate_button{
   width: 80px;
-  height: 50px;
+  height: 40px;
   position: absolute;
   left: 50%;
   margin-left: -50px;
   margin-top: 8px;
+  margin-bottom: 30px;
 }
 
