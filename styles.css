@@ -27,6 +27,7 @@ figure{
 	width:300px;
 	height: 300px;
 	background-color: white;
+	background-image: url("images/blue.gif");
 	border-radius: 4px;
 	text-align: center;
 	padding: 20px;
@@ -53,34 +54,3 @@ nav{
 }
 
 
-.timers{
-	background-color: lightyellow;
-    width: 300px;
-    height: 500px;		  
-    overflow: scroll;
-    margin: 0 auto;
-    position: -webkit -sticky;
-    position: sticky;
-    top: 0;
-    left: 70%;
-    margin-left: -50px;
-    margin-top: 200px;
-    margin-bottom: -620px;
-}
-
-#timer1{
-	text-align: center;
-	white-space: 
-}
-/* Clear floats after the columns */
-		.row:after {
-		  content: "";
-		  display: table;
-		  clear: both;
-		}
-
-		.column{
-		text-align: center;
-		margin-top: 20px;
-		margin-bottom:20px;
-		}

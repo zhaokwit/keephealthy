@@ -1,5 +1,19 @@
 <?php
 session_start();
+$db = mysqli_connect("localhost", "root", "wit123", "fooddb");
+
+$email = $_SESSION['email'];
+$result = mysqli_query($db, "select * from users where email ='$email'") or die("Failed to query database " .mysqli_error($db));
+
+$row = mysqli_fetch_array($result);
+$_SESSION['firstname'] = $row['firstname'];
+        $_SESSION['middlename'] = $row['middlename'];
+        $_SESSION['lastname'] = $row['lastname'];
+        $_SESSION['gen'] = $row['gender'];
+        $_SESSION['dob'] = $row['dob'];
+        $_SESSION['year'] = date("Y", strtotime($_SESSION['dob']));
+        $_SESSION['weight'] = $row['weight'];
+        $_SESSION['email'] = $row['email'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -235,10 +249,10 @@ session_start();
             </div>
              <nav>
             <ul>
-                  <li><a href="#">Home</a> <span>&#124;</span></li>
-                  <li><a href="#">About Hot Pot</a> <span>&#124;</span></li>
-                  <li><a href="#">Calories Calculator</a> <span>&#124;</span></li>
-                  <li><a href="#">History Calories</a> </li>
+                  <li><a href="mainPage.php">Home</a> <span>&#124;</span></li>
+                  <li><a href="About_Hot_Pot.html">About Hot Pot</a> <span>&#124;</span></li>
+                  <li><a href="Calories_Calculator.php">Calories Calculator</a> <span>&#124;</span></li>
+                  <li><a href="Calorie_History.php">History Calories</a> </li>
             </ul>
             <br/><br/>
         </nav>

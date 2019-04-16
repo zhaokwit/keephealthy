@@ -4,7 +4,6 @@
     $db = mysqli_connect('localhost','root', 'wit123','fooddb');
 
     if(isset($_POST['register_btn'])){
-        session_start();
         $fname = mysqli_real_escape_string($db, $_POST['firstName']);
         $middlename = mysqli_real_escape_string($db, $_POST['mName']);
         $lastname = mysqli_real_escape_string($db, $_POST['lastName']);
@@ -40,264 +39,123 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register-KHWHP</title>
-    <style type="text/css">
-    body,input{
-        margin: 0;
-        padding: 0;
-        background: lightblue;
-    }
-    input{
-        display: inline-block;
-        background: #fff;
-    }
-    .container{
-        width: 100%;
-    }
-    .register-box{
-        position: relative;
-        height: 830px;
-        width: 800px;
-        top: 50px;
-        margin: 0 auto;
-        z-index: 99999;
-        background:#ffffff;
-        border: 7px solid #ccc;
-    }
-    .title-box{
-        position: absolute;
-        width: 300px;
-        height: 50px;
-        margin-left: 250px;
-        margin-top: 5px;
-        text-align: center;
-        font-size: 28px;
-        font-weight: 800;
-        color: brown;
-        line-height: 50px;
-    }
-    .firstName-box{
-        position: absolute;
-        width: 420px;
-        height: 40px;
-        line-height: 40px;
-        margin-top:-20px;
-        margin-left:80px;
-        font-weight: 700;
-    }
-    .firstName-input{
-        display: inline-block;
-        margin-left: 28px;
-    }
-    #firstName{
-        height: 35px;
-        width: 290px;
-        border: 2px solid #ccc;
-        border-radius: 5px;
-    }
-     .mName-box{
-        position: absolute;
-        width: 420px;
-        height: 40px;
-        line-height: 40px;
-        margin-top:60px;
-        margin-left:80px;
-        font-weight: 700;
-    }
-     .mName-input{
-        display: inline-block;
-        margin-left: 28px;
-    }
-     #mName{
-        height: 35px;
-        width: 290px;
-        border: 2px solid #ccc;
-        border-radius: 5px;
-    }
-    .lastName-box{
-        position: absolute;
-        width: 420px;
-        height: 40px;
-        line-height: 40px;
-        margin-top:140px;
-        margin-left:80px;
-        font-weight: 700;
-    }
-    .lastName-input{
-        display: inline-block;
-        margin-left: 28px;
-    }
-    #lastName{
-        height: 35px;
-        width: 290px;
-        border: 2px solid #ccc;
-        border-radius: 5px;
-    }
-    .gender-box{
-        position: absolute;
-        width: 420px;
-        height:  40px;
-        line-height: 40px;
-        margin-top:220px;
-        margin-left:80px;
-        font-weight: 700;
-    }
-    .gender-input{
-        display: inline-block;
-        margin-left: 28px;
-    }
-    #userPhone{
-        height: 35px;
-        width: 290px;
-        border: 2px solid #ccc;
-        border-radius: 5px;
-    }
-    .dob-box{
-        position: absolute;
-        width: 420px;
-        height: 40px;
-        line-height: 40px;
-        margin-top:300px;
-        margin-left:80px;
-        font-weight: 700;
-    }
-    .dob-input{
-        display: inline-block;
-        margin-left: 28px;
-    }
-    #dob{
-        height: 35px;
-        width: 290px;
-        border: 2px solid #ccc;
-        border-radius: 5px;
-    }
-
-    .weight-box{
-        position: absolute;
-        width: 420px;
-        height: 40px;
-        line-height: 40px;
-        margin-top:380px;
-        margin-left:82px;
-        font-weight: 700;
-    }
-    .weight-input{
-        display: inline-block;
-        margin-left: 28px;
-    }
-    #weight{
-        height: 35px;
-        width: 290px;
-        border: 2px solid #ccc;
-        border-radius: 5px;
-    }
-    .email-box{
-        position: absolute;
-        width: 420px;
-        height: 40px;
-        line-height: 40px;
-        margin-top:460px;
-        margin-left:80px;
-        font-weight: 700;
-    }
-    .email-input{
-        display: inline-block;
-        margin-left: 28px;
-    }
-    #email{
-        height: 35px;
-        width: 290px;
-        border: 2px solid #ccc;
-        border-radius: 5px;
-    }
-    .password-box{
-        position: absolute;
-        width: 420px;
-        height: 40px;
-        line-height: 40px;
-        margin-top:540px;
-        margin-left:80px;
-        font-weight: 700;
-    }
-    .password-input{
-        display: inline-block;
-        margin-left: 28px;
-    }
-    #password{
-        height: 35px;
-        width: 290px;
-        border: 2px solid #ccc;
-        border-radius: 5px;
-    }
-    .confirmPassword-box{
-        position: absolute;
-        width: 600px;
-        height: 40px;
-        line-height: 40px;
-        margin-top:620px;
-        margin-left:80px;
-        font-weight: 700;
-    }
-    .confirmPassword-input{
-        display: inline-block;
-        margin-left: 28px;
-    }
-    #confirmPassword{
-        height: 35px;
-        width: 290px;
-        border: 2px solid #ccc;
-        border-radius: 5px;
-    }
-
-    .require{
-        color: red;
-    }
-    .registerButton-box{
-        position:absolute;
-        width: 80px;
-        height: 40px;
-        line-height: 40px;
-        margin-top: 715px;
-        margin-left:200px;
-        border-radius: 5px;
-        background: grey;
-        margin-bottom: 30px;
-    }
-    #registerButton-button{
-        display: inline-block;
-        width: 80px;
-        height: 40px;
-        border-radius: 5px;
-        background: mistyrose;
-        font-weight: 700;
-    }
-    .goLogin-box{
-        position:absolute;
-        width: 150px;
-        height: 20px;
-        margin-top: 715px;
-        margin-left:320px;
-        margin-bottom: 30px;
-    }
-
-    nav ul li {
-    display: inline;
-
-    }
-
-    nav ul {
-    margin-top: 70px;
-   
-    list-style-type: none;
-    text-align: center;
-    }
-
-    </style>
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/register css.css">
 </head>
 <body>
-    <div>
+	<!--menu-->
+    <header id="header">
+		<div class="inner">
+			<a href="mainPage.php" class="logo">Keep Healthy with Hot Pot</a>
+			<nav id="nav">
+				<a href="mainPage.php">Home</a>
+				<a href="About_Hot_Pot.html">About Hot Pot</a>
+				<a href="Calories_Calculator.php">Calorie Calculater</a>
+				<a href="Calorie_History.php">Calorie History Graph</a>
+			</nav>
+		</div>
+	</header>
+	<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 
-</div>
+	<div class="main">
+
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <form method="POST" class="register-form" id="register-form">
+                            <!--First Name-->
+                            <span class="require">*</span>
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-account material-icons-name zmdi-hc-2x"></i></label>
+                                <input type="text" name="name" id="firstName" placeholder="First Name" required/>
+                            </div>
+                            <!--Last Name-->
+                            <span class="require">*</span>
+                             <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-account material-icons-name zmdi-hc-2x"></i></label>
+                                <input type="text" name="name" id="lastName" placeholder="Last Name" required/>
+                            </div>
+
+                            <!--Gender-->
+                            <span class="require" >*</span>
+                            <div class="form-group">
+                                <div class="gender-input">
+                                    <label for="gender"><i class="zmdi zmdi-male-female zmdi-hc-2x"></i></label>
+                                   <input type="radio" id="gender_male" class="genderinput" name="gender" value="0" required/>
+                                   <label class="male">Male </label>
+                                    <input type="radio" id="gender_female" class="genderinput" name="gender" value="1" required/>  
+                                    <label class="female">FeMale</label> 
+                                </div>
+                            </div>
+
+                            <!--DOB-->
+                            <span class="require">*</span>
+                            <div class="form-group">
+                                <label for="dob"><i class="zmdi zmdi-cake zmdi-hc-2x"></i></label>
+                                <div class="dob-input">
+                                    <input type="date" id="dob" name="dob" required/>
+                                </div>
+                                </div>
+
+                             <!--weight-->
+                             <span class="require">*</span>
+                            <div class="form-group">
+                                <div class="weight-input">
+                                    <label for="weight"><i class="zmdi zmdi-male zmdi-hc-2x"></i></label>
+                                    <input type="number" id="weight" name="weight" placeholder="Weight (kg)" required/>
+                                 </div>
+                            </div>
+
+                            <!--email-->
+                            <span class="require">*</span>
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi zmdi-email zmdi-hc-2x"></i></label>
+                                <input type="email" name="email" id="email" placeholder="Your Email" required/>
+                            </div>
+
+                            <!--confirm Password-->
+                            <span class="require">*</span>
+                            <div class="form-group">
+                                <label for="password"><i class="zmdi zmdi-lock zmdi-hc-2x"></i></label>
+                                <input type="password" name="password" id="password" placeholder="Please enter your password" required/>
+                            </div>
+                            <!--confirm Password-->
+                            <span class="require">*</span>
+                            <div class="form-group">
+                                <label for="confirmPassword"><i class="zmdi zmdi-lock-outline zmdi-hc-2x"></i></label>
+                                <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Please confirm your password" required/>
+                            </div>
+                            
+                            <div class="form-group form-button">
+                                <input type="submit" name="register_btn" id="registerButton-button" class="form-submit" value="Register"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="images/hotpot.jpg" alt="sing up image"></figure>
+                        <a href="mainPage.php" style="modal.style.display="flex" class="signup-image-link">I am already member</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/main-signup.js"></script>
+
+
+
+<!-- old
     <div class="container">
         <div class="register-box">
             <div class="title-box">
@@ -393,11 +251,11 @@
                 <bn/>
 
                 <div class="goLogin-box">
-                    <a href="#" style="text-decoration: none;">Already Have an account? Go Login</a>
+                    <a href="mainPage.php" style="modal.style.display="flex">Already Have an account? Go Login</a>
                 </div>
             </form>
         
         </div>
-    </div>
+    </div>-->
 </body>
 </html>

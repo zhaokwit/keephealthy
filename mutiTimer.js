@@ -1,4 +1,4 @@
-
+window.onload = function(){
     var addTimer = function () {     
         var list = [],     
             interval;     
@@ -26,8 +26,8 @@
                 return  "Food name: "+ m + "m" + ":" + s + "s";       
             else return "Your food is ready to eat! Enjoy :)";     
         }     
-    } ();     
-    
-    addTimer("timer1", 5);     
+    } 
+    addTimer("timer1", time1);     
     addTimer("timer2", 8);     
-    addTimer("timer3", 3);
+    addTimer("timer3", 3);     
+}
